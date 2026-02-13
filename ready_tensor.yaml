@@ -1,0 +1,53 @@
+name: cybersecurity-monitor
+title: Cybersecurity Monitor using MCP and Agentic Reasoning
+description: >
+  An agentic cybersecurity monitoring system built using the Model Context
+  Protocol (MCP). The system collects security signals via MCP tools,
+  performs structured reasoning using an LLM agent, and evaluates the
+  generated security analysis using DeepEval metrics such as hallucination
+  detection and judgment quality.
+
+version: 0.1.0
+license: MIT
+
+authors:
+  - name: Yenugu Sujithreddy
+
+tags:
+  - cybersecurity
+  - mcp
+  - agentic-ai
+  - llm-evaluation
+  - deepeval
+  - groq
+  - langgraph
+
+frameworks:
+  - python
+  - mcp
+  - langgraph
+
+models:
+  - groq/mixtral-8x7b-32768
+  - groq/llama3-70b-8192
+
+evaluation:
+  methods:
+    - hallucination
+    - answer-relevancy
+    - g-eval
+
+entrypoints:
+  server: src/server/main.py
+  client: src/client/main.py
+  evaluation: evaluation/deepeval/test_agent_reasoning.py
+
+requirements:
+  - python>=3.10
+
+environment:
+  variables:
+    - GROQ_API_KEY
+
+repository:
+  type: git
