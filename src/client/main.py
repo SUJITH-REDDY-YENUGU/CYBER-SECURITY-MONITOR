@@ -58,8 +58,32 @@ async def main():
 
     result = await app.ainvoke({})
 
-    print("\n=== FINAL SECURITY REPORT ===\n")
-    print(result["analysis"])
+    async def human_in_the_loop(result):
+        """Allow a human to review and optionally refine the analysis."""
+        while True:
+            print("\n=== FINAL SECURITY REPORT ===\n")
+            print(result["analysis"])
+
+            choice = await asyncio.to_thread(
+                input,
+                "\nWould you like to add notes and rerun the analysis? (y/N): ",
+            )
+
+            if not choice or choice.strip().lower() != "y":
+                return result
+
+            notes = await asyncio.to_thread(
+                input,
+                "Enter additional context/notes (leave blank to keep current analysis): ",
+            )
+
+            if not notes.strip():
+                return result
+
+            result = await app.ainvoke({"user_notes": notes})
+
+    await human_in_the_loop(result)
+
 
 if __name__ == "__main__":
     asyncio.run(main())
