@@ -88,7 +88,33 @@ CYBER-SECURITY-MONITOR/
    * Detects hallucinations and weak conclusions
 
 ---
+## Multi-Agent Architecture
 
+This system uses a multi-agent architecture to automate security monitoring and analysis.
+
+### Log Collector Agent
+Responsible for collecting system data from monitoring tools.
+
+Capabilities:
+- Retrieves event logs
+- Collects running process information
+- Gathers network activity
+
+### Event Reasoner Agent
+Analyzes collected events to detect suspicious behavior.
+
+Capabilities:
+- Correlates security events
+- Identifies anomalies
+- Detects potential attack patterns
+
+### Threat Analyst Agent
+Generates the final security report using LLM reasoning.
+
+Capabilities:
+- Evaluates threat severity
+- Explains detected incidents
+- Uses RAG-based cybersecurity knowledge retrieval
 ## 🧪 Evaluation Metrics
 
 The system currently evaluates:
